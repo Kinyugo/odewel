@@ -34,6 +34,8 @@ To install `odewei`, you have two options:
 ```python
 from odewei.torch import init_on_demand_weights_model
 
+model_fn = # () -> model instance
+weights_loader_fn = # (module name, list of weight names) -> mapping of weight name to weight
 model = init_on_demand_weights_model(model_fn, weights_loader_fn)
 ```
 
