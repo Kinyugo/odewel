@@ -41,7 +41,7 @@ model = init_on_demand_weights_model(model_fn, weights_loader_fn)
 
 ### `model_fn` - The Model's Blueprint
 
-:blue_book: A function that returns a `torch.nn.Module` instance, your model's blueprint! :blue_book:
+:blue_book: A function that returns a `torch.nn.Module` instance, your model's blueprint!
 
 Here's an example of using `T5ForConditionalGeneration` from the transformers library to define your `model_fn`:
 
@@ -52,7 +52,7 @@ config = T5Config.from_pretrained("philschmid/flan-t5-xxl-sharded-fp16")
 model_fn = lambda: T5ForConditionalGeneration(config)
 ```
 
-:pencil: With odewel, you can use any model architecture that you want! :pencil:
+:pencil: With odewel, you can use any model architecture that you want!
 
 ### `weights_loader_fn` - The Heart of odewel
 
@@ -74,12 +74,16 @@ weights_loader_fn = ShardedWeightsLoader(
 )
 ```
 
-:bulb: With odewel, you have the flexibility to choose how and when your weights are loaded :bulb:
+:bulb: With odewel, you have the flexibility to choose how and when your weights are loaded.
 
 ## Considerations
 
-:spiral_notepad: A few things to note :spiral_notepad:
+:spiral_notepad: A few things to note:
 
 - The library only supports PyTorch models. Support for other libraries will be added in the future.
 
 - When using odewel, all weights are initialized on the meta device without any data. Therefore, to ensure a correct forward pass, the required tensor must be set as a parameter or buffer and must be included in the weight mapping returned by the `weights_loader_fn`.
+
+## :clipboard: To-Do
+
+- Implement Smart and Efficient Weight Loaders: The current weight loaders load weights one after the other in a greedy manner. However, all weights in a network are not equal. Some weights may be reused and the larger ones may take more time to load. As such, implementing efficient pre-loading strategies is crucial for boosting performance.
