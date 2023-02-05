@@ -1,9 +1,9 @@
 from setuptools import find_packages, setup
 
 # Metadata
-NAME = "odewei"
+NAME = "odewel"
 DESCRIPTION = "On demand weights loading."
-URL = "https://github.com/Kinyugo/odewei"
+URL = "https://github.com/Kinyugo/odewel"
 EMAIL = "kinyugomaina@gmail.com"
 AUTHOR = "Kinyugo Maina"
 REQUIRES_PYTHON = ">=3.6.0"
