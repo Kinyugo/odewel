@@ -78,7 +78,7 @@ weights_loader_fn = ShardedWeightsLoader(
 
 ## Considerations
 
-:warning: A few things to keep in mind: :warning:
+:spiral_notepad: A few things to note :spiral_notepad:
 
 - The library only supports PyTorch models. Support for other libraries will be added in the future.
 
