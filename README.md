@@ -58,7 +58,7 @@ model_fn = lambda: T5ForConditionalGeneration(config)
 
 :magic_wand: This is where the magic happens :magic_wand:
 
-`weights_loader_fn` is a function that takes in the name of the sub-model and a list of strings representing the missing weights and returns a dictionary mapping weight names to tensors. This is where you get to decide your pre-loading strategy, device, and data type.
+`weights_loader_fn` is a function that takes in the name of the sub-model and a list of strings representing the missing weights and returns a dictionary mapping weight names to weights. This is where you get to decide your pre-loading strategy, device, and data type.
 
 Here's an example of using `ShardedWeightsLoader` from the odewei library to define your `weights_loader_fn`:
 
