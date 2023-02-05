@@ -1,6 +1,6 @@
 # odewei - On Demand Weights Loading
 
-:rocket: Run any model inference on any hardware! :rocket:
+:globe_with_meridians: :rocket: Run any model inference on any hardware! :globe_with_meridians: :rocket:
 
 odewei (/əʊdwei/) is a library that allows you to transform your regular model, where weights are loaded on initialization, into a model where weights are loaded only when they are needed for computation. This results in a lighter and more efficient model that can be run on virtually any hardware, regardless of its size.
 
