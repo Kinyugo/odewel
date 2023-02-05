@@ -310,7 +310,7 @@ def make_weights_loading_hook(
             return None
 
         # Free previously unreferenced tensors
-        # free_memory()
+        free_memory()
 
         # Get the empty weights names for the current module only
         empty_weights_names = get_empty_weights_names(
@@ -342,7 +342,7 @@ def make_weights_loading_hook(
 
         # Free memory by deleting the weights dict and freeing unreferenced tensors
         del weights_dict
-        # free_memory()
+        free_memory()
 
     return weights_loading_hook
 
