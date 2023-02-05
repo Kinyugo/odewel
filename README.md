@@ -31,9 +31,11 @@ from odewei.torch import init_on_demand_weights_model
 model = init_on_demand_weights_model(model_fn, weights_loader_fn)
 ```
 
-### `model_fn`
+### `model_fn` - The Model's Blueprint
 
-A function that returns a `torch.nn.Module` instance.
+:blue_book: A function that returns a `torch.nn.Module` instance, your model's blueprint! :blue_book:
+
+Here's an example of using `T5ForConditionalGeneration` from the transformers library to define your `model_fn`:
 
 ```python
 from transformers import T5ForConditionalGeneration, T5Config
@@ -42,9 +44,15 @@ config = T5Config.from_pretrained("philschmid/flan-t5-xxl-sharded-fp16")
 model_fn = lambda: T5ForConditionalGeneration(config)
 ```
 
-### `weights_loader_fn`
+:pencil: With odewei, you can use any model architecture that you want! :pencil:
 
-A callable that takes in the name of the sub-model and a list of strings representing the missing weights, and returns a dictionary of weights names to tensor mapping. It is expected that the returned tensors will be already mapped to the correct device and have the correct data type.
+### `weights_loader_fn` - The Heart of odewei
+
+:heartpulse: The callable that takes your model's performance to the next level! :heartpulse:
+
+This is where the magic happens. `weights_loader_fn` is a function that takes in the name of the sub-model and a list of strings representing the missing weights and returns a dictionary mapping weight names to tensors. This is where you get to decide your pre-loading strategy, device, and data type.
+
+Here's an example of using `ShardedWeightsLoader` from the odewei library to define your `weights_loader_fn`:
 
 ```python
 from odewei.torch import ShardedWeightsLoader
@@ -57,3 +65,5 @@ weights_loader_fn = ShardedWeightsLoader(
     dtype=torch.float16,
 )
 ```
+
+:bulb: With odewei, you have the flexibility to choose how your weights are loaded and stored! :bulb:
