@@ -6,15 +6,23 @@ odewei (/əʊdwei/) is a handy library that enables you to take your models to t
 
 ## Setup
 
-Setup your virtual environment using conda or venv.
+:construction_worker: Get ready to take control of your model's performance! :construction_worker:
 
-### Install package from GitHub
+### Prerequisites
+
+Set up a virtual environment. You can use any environment manager you wish, e.g: `conda` or `venv` e.t.c.
+
+### Installation
+
+To install `odewei`, you have two options:
+
+#### Option 1: Install package from GitHub
 
 ```bash
     pip install -q git+https://github.com/Kinyugo/odewei.git
 ```
 
-### Install package in edit mode
+#### Option 2: Install package in edit mode
 
 ```bash
     git clone https://github.com/Kinyugo/odewei.git
@@ -22,6 +30,8 @@ Setup your virtual environment using conda or venv.
     pip install -q -r requirements.txt
     pip install -e .
 ```
+
+:white_check_mark: You are now ready to use odewei. :white_check_mark:
 
 ## Usage
 
