@@ -422,6 +422,9 @@ def init_empty_weights() -> Generator[None, None, None]:
 
     Modules that have already been registered with parameters or buffers before entering
     the context will remain unchanged.
+
+    Copied from huggingface accelerate due to a bug in the accelerate implementation that
+    does not support the `persistent` argument for the `register_buffer` function.
     """
     old_register_parameter = nn.Module.register_parameter
     old_register_buffer = nn.Module.register_buffer
