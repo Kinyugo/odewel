@@ -85,17 +85,15 @@ class ShardedWeightsLoader:
         for ckpt_name in ckpt_names:
             ckpt_path = os.path.join(self.weights_dir, ckpt_name)
             # We will move the weights to the correct device later
-            curr_weights_dict = torch.load(ckpt_path, map_location=torch.device("cpu"))
+            curr_weights_dict = torch.load(ckpt_path, map_location=self.device)
             weights_dict.update(curr_weights_dict)
 
             del curr_weights_dict
             gc.collect()
 
-        # Move the weights dict to the correct device
+        # Move the weights dict to the correct dtype
         if weights_dict:
             for weight_name, weight in weights_dict.items():
-                weights_dict[weight_name] = weight.to(
-                    device=self.device, dtype=self.dtype
-                )
+                weights_dict[weight_name] = weight.to(dtype=self.dtype)
 
         return weights_dict
