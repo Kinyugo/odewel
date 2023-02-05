@@ -163,7 +163,7 @@ cython_debug/
 .vscode
 
 # Checkpoints saved during runs
-checkpoints/
+*checkpoints*/
 
 # Random collection of scripts and notebooks for hacking
 playground/

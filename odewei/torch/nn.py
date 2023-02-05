@@ -1,3 +1,4 @@
+import warnings
 from contextlib import contextmanager
 from typing import Callable, Dict, Generator, Iterable, List, Optional, Tuple
 
@@ -334,7 +335,7 @@ def make_weights_loading_hook(
             empty_weights_names = list(
                 set(empty_weights_names) - set(weights_dict.keys())
             )
-            raise RuntimeError(
+            warnings.warn(
                 f"Some weights for the {module_name} module could not be loaded."
                 f" Missing weights: {empty_weights_names}"
             )
@@ -515,16 +516,3 @@ def init_on_demand_weights_model(
     )
 
     return model
-
-
-if __name__ == "__main__":
-    model_fn = lambda: nn.Sequential(nn.Linear(1, 5), nn.GELU(), nn.Linear(5, 1))
-    regular_model = model_fn()
-    state_dict = regular_model.state_dict()
-    # loader_fn = lambda _, missing_weights: {
-    #     name: weight for name, weight in state_dict.items() if name in missing_weights
-    # }
-    loader_fn = lambda *_: {}
-    odewei_model = init_on_demand_weights_model(model_fn, loader_fn)
-    x = torch.rand(1, 1)
-    odewei_model(x)

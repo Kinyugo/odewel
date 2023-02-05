@@ -71,21 +71,27 @@ class ShardedWeightsLoader:
         """
         # Find all the weights that contain the weights for the current module
         ckpt_names = list(
-            set([self.weights_mapping[weight_name] for weight_name in weight_names])
+            set(
+                [
+                    self.weights_mapping[weight_name]
+                    for weight_name in weight_names
+                    if weight_name in self.weights_mapping.keys()
+                ]
+            )
         )
 
         # Keep track of the weights dict in one place
         weights_dict = {}
         for ckpt_name in ckpt_names:
             ckpt_path = os.path.join(self.weights_dir, ckpt_name)
-            # We will move the state to the correct device later
+            # We will move the weights to the correct device later
             curr_weights_dict = torch.load(ckpt_path, map_location=torch.device("cpu"))
             weights_dict.update(curr_weights_dict)
 
             del curr_weights_dict
             gc.collect()
 
-        # Move the state dict to the correct device
+        # Move the weights dict to the correct device
         if weights_dict:
             for weight_name, weight in weights_dict.items():
                 weights_dict[weight_name] = weight.to(
