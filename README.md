@@ -4,13 +4,13 @@
 
 odewel (/əʊdwel/) is a handy library that enables you to take your models to the next level of efficiency. With odewel, you can transform your conventional models that load all weights during initialization, into models that load weights only when required for computation. This results in a leaner, more nimble model that can be run on any hardware, regardless of its size or capabilities. Say goodbye to the limitations of your hardware and hello to the freedom of on demand weights loading with odewel!
 
-## Setup
+## :gear: Setup
 
-### Prerequisites
+### :heavy_check_mark: Prerequisites
 
 Set up a virtual environment. You can use any environment manager you wish, e.g: `conda` or `venv` e.t.c.
 
-### Installation
+### :anchor: Installation
 
 To install `odewel`, you have two options:
 
@@ -29,7 +29,7 @@ To install `odewel`, you have two options:
     pip install -e .
 ```
 
-## Usage
+## :technologist: Usage
 
 ```python
 from odewel.torch import init_on_demand_weights_model
@@ -39,9 +39,9 @@ weights_loader_fn = # (module name, list of weight names) -> mapping of weight n
 model = init_on_demand_weights_model(model_fn, weights_loader_fn)
 ```
 
-### `model_fn` - The Model's Blueprint
+### :blue_book: `model_fn` - The Model's Blueprint
 
-:blue_book: A function that returns a `torch.nn.Module` instance, your model's blueprint!
+A function that returns a `torch.nn.Module` instance, your model's blueprint!
 
 Here's an example of using `T5ForConditionalGeneration` from the transformers library to define your `model_fn`:
 
@@ -52,11 +52,9 @@ config = T5Config.from_pretrained("philschmid/flan-t5-xxl-sharded-fp16")
 model_fn = lambda: T5ForConditionalGeneration(config)
 ```
 
-:pencil: With odewel, you can use any model architecture that you want!
+:bulb: With odewel, you can use any model architecture that you want!
 
-### `weights_loader_fn` - The Heart of odewel
-
-:magic_wand: This is where the magic happens :magic_wand:
+### :weight_lifting: `weights_loader_fn` - The Heart of odewel
 
 `weights_loader_fn` is a function that takes in the name of the sub-model and a list of strings representing the missing weights and returns a dictionary mapping weight names to weights. This is where you get to decide your pre-loading strategy, device, and data type.
 
@@ -76,9 +74,7 @@ weights_loader_fn = ShardedWeightsLoader(
 
 :bulb: With odewel, you have the flexibility to choose how and when your weights are loaded.
 
-## Considerations
-
-:spiral_notepad: A few things to note:
+## :spiral_notepad: Considerations
 
 - The library only supports PyTorch models. Support for other libraries will be added in the future.
 
