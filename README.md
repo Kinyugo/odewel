@@ -75,3 +75,11 @@ weights_loader_fn = ShardedWeightsLoader(
 ```
 
 :bulb: With odewei, you have the flexibility to choose how and when your weights are loaded :bulb:
+
+## Considerations
+
+:warning: A few things to keep in mind: :warning:
+
+- The library only supports PyTorch models.
+
+- When using odewei, all weights are initialized on the meta device without any data. Therefore, to ensure a correct forward pass, the required tensor must be set as a parameter or buffer and must be included in the weight mapping returned by the `weights_loader_fn`.
