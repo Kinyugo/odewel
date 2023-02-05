@@ -1,8 +1,8 @@
-# odewei
+# odewei - On Demand Weights Loading
 
-:fire: Transform your PyTorch models to use on-demand weights loading with ease!
+:rocket: Run any model inference on any hardware! :rocket:
 
-With this library, you can efficiently manage your model's memory usage by only loading the required weights when necessary. Say goodbye to loading all the weights at once and hello to a more efficient and lighter model!
+odewei (/əʊdwei/) is a library that allows you to transform your regular model, where weights are loaded on initialization, into a model where weights are loaded only when they are needed for computation. This results in a lighter and more efficient model that can be run on virtually any hardware, regardless of its size.
 
 ## Setup
 
