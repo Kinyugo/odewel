@@ -16,8 +16,8 @@ def free_memory() -> None:
     Garbage Collection who?
     Who has time for jokes with unfreed memory?
     """
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()
+    # if torch.cuda.is_available():
+    #     torch.cuda.empty_cache()
     gc.collect()
 
 
